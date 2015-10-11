@@ -1,0 +1,17 @@
+{
+  "name": "soccer-bot",
+  "version": "1.0.0",
+  "description": "A soccer bot for groupme",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "engines": {
+    "node": "0.12.x"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^1.2.0",
+    "moment": "^2.10.6"
+  }
+}
