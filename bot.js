@@ -35,11 +35,6 @@ if(matches_rn.length > 0) {
         matches_rn.length + ' ' + plural + ' kicking off soon:\n' +
         matches_rn.join(',\n')
     );
-
-    // set each entry as sent: true
-    matches_rn.forEach(function(entry) {
-        entry.sent: true
-    });
 }
 else {
     console.log('no matches found');
