@@ -23,7 +23,7 @@ fixturesEpl.forEach(function(entry) {
 });
 
 if(matches_rn.length > 0) {
-    if(matches_send == 1) {
+    if(matches_rn.length == 1) {
         plural = 'match';
     }
     else {
