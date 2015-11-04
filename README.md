@@ -12,3 +12,4 @@ A groupme bot for auto posting upcoming soccer matches (or anything really) in a
 
 - Update json fixtures for what matches have already been posted in the group chat
 - Run the bot automatically every x minutes
+- Check multiple datasets at once
