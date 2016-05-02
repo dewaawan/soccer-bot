@@ -5,7 +5,6 @@ require('dotenv').load();
 const moment   = require('moment');
 let   program  = require('commander');
 const promptly = require('promptly');
-const MockDate = require('mockdate');
 
 const run    = require('./commands/run.js');
 const update = require('./commands/update.js');
@@ -22,7 +21,7 @@ program
     .action(function(cmd) {
         if(cmd.parent.dev) {
             // set the date manually for dev purposes
-            MockDate.set(moment.unix(1461419900));
+            require('mockdate').set(moment.unix(1461419900));
 
             console.log('Running in development mode with custom date')
         }
