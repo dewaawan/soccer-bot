@@ -1,17 +1,23 @@
 {
   "name": "soccer-bot",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A soccer bot for groupme",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
   },
   "engines": {
-    "node": "0.12.x"
+    "node": "5.9.x"
   },
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^1.2.0",
-    "moment": "^2.10.6"
+    "commander": "^2.9.0",
+    "dotenv": "^2.0.0",
+    "lowdb": "^0.12.5",
+    "moment": "^2.13.0",
+    "sync-request": "^3.0.1"
+  },
+  "devDependencies": {
+    "mockdate": "^1.0.4"
   }
 }
