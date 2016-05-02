@@ -4,6 +4,7 @@ require('dotenv').load();
 
 const moment   = require('moment');
 let   program  = require('commander');
+const promptly = require('promptly');
 const MockDate = require('mockdate');
 
 const run    = require('./commands/run.js');
@@ -50,8 +51,15 @@ program
     .command('clean')
     .description('Clean the local database')
     .action(function() {
-        // clean the local database
-        clean();
+        // clean the local database after confirmation from user
+        promptly.confirm('This action will delete the local database, continue?', function(err, value) {
+            if(value) {
+                console.log('Cleaning...');
+                clean();
+            } else {
+                console.log('Clean aborted');
+            }
+        });
     });
 
 program.parse(process.argv);
