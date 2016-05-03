@@ -1,6 +1,6 @@
 'use strict';
 
-require('dotenv').load();
+require('dotenv').config();
 
 const moment   = require('moment');
 let   program  = require('commander');
