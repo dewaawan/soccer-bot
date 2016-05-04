@@ -1,5 +1,7 @@
 'use strict';
 
+process.chdir(__dirname);
+
 require('dotenv').config();
 
 const moment   = require('moment');
