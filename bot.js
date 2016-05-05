@@ -23,7 +23,7 @@ program
     .action(function(cmd) {
         if(cmd.parent.dev) {
             // set the date manually for dev purposes
-            require('mockdate').set(moment.unix(1461419900));
+            require('mockdate').set(moment.unix(process.env.CUSTOM_DATE));
 
             console.log('Running in development mode with custom date')
         }
