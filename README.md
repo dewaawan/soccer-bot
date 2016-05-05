@@ -1,4 +1,4 @@
-# Soccer Bot
+# Soccer Bot [![Build Status](https://travis-ci.org/noahbass/soccer-bot.svg?branch=master)](https://travis-ci.org/noahbass/soccer-bot)
 
 A groupme bot for auto posting upcoming soccer matches in a groupme chat built in node.js.
 
