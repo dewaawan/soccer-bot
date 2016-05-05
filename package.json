@@ -4,7 +4,8 @@
   "description": "A soccer bot for groupme",
   "main": "bot.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node bot.js",
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "engines": {
     "node": "5.9.x"
@@ -19,6 +20,8 @@
     "sync-request": "^3.0.1"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
     "mockdate": "^1.0.4"
   }
 }
