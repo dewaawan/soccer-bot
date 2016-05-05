@@ -3,3 +3,5 @@ node_js:
   - "5"
 before_script:
   - "npm install --dev"
+notifications:
+  email: false
