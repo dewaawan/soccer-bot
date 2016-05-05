@@ -2,9 +2,7 @@
 
 const chai = require('chai');
 
-const options = {
-    foo: 'foo'
-};
+const options = {};
 
 exports.options = options;
 exports.chai    = chai;
