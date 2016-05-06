@@ -23,7 +23,7 @@ To automatically update the fixture list every day and look for matches to be po
 
 ```
 0 0 * * * node bot.js update >/dev/null 2>&1
-5 * * * * node bot.js run >/dev/null 2>&1
+*/5 * * * * node bot.js run >/dev/null 2>&1
 ```
 
 ## Tests
