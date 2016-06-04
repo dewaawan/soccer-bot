@@ -16,6 +16,7 @@ Made to work with [api.football-data.org](http://api.football-data.org/) for dat
 - `node bot.js setup` is a first time command to get a most up to date fixture list for the local database
 - `node bot.js update` updates the dates in the local database to that of the dates in the football api
 - `node bot.js clean` removes everything in the local database (used for testing). Data is stored in db.json
+- `node bot.js list -h [name] -a [name]` finds and lists out those fixtures from the local database. Each option is optional. Given no options, every fixture will be listed
 
 ## Cron Jobs
 

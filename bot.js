@@ -11,6 +11,7 @@ const promptly = require('promptly');
 const run    = require('./commands/run.js');
 const update = require('./commands/update.js');
 const setup  = require('./commands/setup.js');
+const list   = require('./commands/list.js');
 const clean  = require('./commands/clean.js');
 
 program
@@ -46,6 +47,16 @@ program
     .action(function() {
         // first time setup
         setup();
+    });
+
+program
+    .command('list')
+    .description('List the fixtures in the local database')
+    .option('-h, --homeTeamName [name]', 'Specify the home team name to search for')
+    .option('-a, --awayTeamName [name]', 'Specify the away team name to search for')
+    .action(function(cmd) {
+        // list the fixrures in the database with options
+        list(cmd);
     });
 
 program
