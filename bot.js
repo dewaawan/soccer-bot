@@ -53,7 +53,7 @@ program
     .description('Clean the local database')
     .action(function() {
         // clean the local database after confirmation from user
-        promptly.confirm('This action will delete the local database, continue?', function(err, value) {
+        promptly.confirm('This action will delete the local database, continue? (Y/n) ', function(err, value) {
             if(value) {
                 console.log('Cleaning...');
                 clean();
