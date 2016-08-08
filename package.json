@@ -8,20 +8,21 @@
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "engines": {
-    "node": "5.9.x"
+    "node": ">=4.x"
   },
   "license": "MIT",
   "dependencies": {
     "commander": "^2.9.0",
     "dotenv": "^2.0.0",
-    "lowdb": "^0.12.5",
-    "moment": "^2.13.0",
-    "promptly": "^1.1.0",
-    "sync-request": "^3.0.1"
+    "moment": "^2.14.1",
+    "mongoose": "^4.5.8",
+    "promptly": "^2.0.0",
+    "request": "^2.74.0",
+    "winston": "^2.2.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^2.4.5",
+    "mocha": "^3.0.1",
     "mockdate": "^1.0.4"
   }
 }

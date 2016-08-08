@@ -1,15 +1,22 @@
 'use strict';
 
-const fs = require('fs');
+const Fixture = require('../models/fixture');
 
-/*
- * Clean
- * Remove the local database (for testing purposes really)
+/**
+ * Removes all fixtures from the local database
+ *
+ * @return {Promise}
  */
 function clean() {
-    fs.unlinkSync('db.json');
+    return new Promise(function(resolve, reject) {
+        Fixture.remove({}, function(error) {
+            if (error) {
+                reject(error);
+            }
 
-    console.log('Removed the local database. Use `node bot.js setup` to import an up to date fixture list');
-}
+            resolve();
+        });
+    });
+};
 
 module.exports = clean;
