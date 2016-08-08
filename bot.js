@@ -9,7 +9,8 @@ const moment   = require('moment');
 const program  = require('commander');
 const promptly = require('promptly');
 
-const run    = require('./commands/run.js');
+const logger = require('./lib/logger');
+const run    = require('./commands/run');
 const update = require('./commands/update');
 const list   = require('./commands/list');
 const clean  = require('./commands/clean');
@@ -21,6 +22,7 @@ mongoose.connect(process.env.MONGODB_URI);
 
 function connectionClose() {
     mongoose.disconnect();
+    logger.info('Disconnected from mongodb');
 };
 
 program
@@ -35,19 +37,19 @@ program
             // set the date manually for dev purposes
             require('mockdate').set(moment.unix(process.env.CUSTOM_DATE));
 
-            console.log('Running in development mode with custom date');
+            logger.info('Running in development mode with custom date');
         }
 
         // find and post the matches that are happening within the given timeframe (in minutes)
         run().then(function(values) {
                 if (values.fixtures_send.length > 0) {
-                    console.log('Posted', values.fixtures_send.length, 'fixture(s) with status code of', values.response.statusCode);
+                    logger.info('Posted', values.fixtures_send.length, 'fixture(s) with status code of', values.response.statusCode);
                 } else {
-                    console.log('No fixtures posted');
+                    logger.info('No fixtures posted');
                 }
             })
             .catch(function(error) {
-                console.log(error);
+                logger.error(error);
             })
             .then(function() {
                 connectionClose();
@@ -61,13 +63,13 @@ program
         // fetch the latest fixture list and update the local fixture list
         update().then(function(fixtures) {
                 if (fixtures.length === 0) {
-                    console.log('No fixtures to update');
+                    logger.info('No fixtures to update');
                 } else {
-                    console.log('Successfully updated', fixtures.length, 'fixture(s)');
+                    logger.info('Successfully updated', fixtures.length, 'fixture(s)');
                 }
             })
             .catch(function(error) {
-                console.error(error);
+                logger.error(error);
             })
             .then(function() {
                 connectionClose();
@@ -80,10 +82,10 @@ program
     .action(function() {
         // first time setup
         setup().then(function(fixtures) {
-                console.log('Successfully imported', fixtures.length, 'fixture(s)');
+                logger.info('Successfully imported', fixtures.length, 'fixture(s)');
             })
             .catch(function(error) {
-                console.error(error);
+                logger.error(error);
             })
             .then(function() {
                 connectionClose();
@@ -100,13 +102,13 @@ program
         // list the fixrures in the database with options
         list(cmd).then(function(fixtures) {
                 if (fixtures.length === 0) {
-                    console.log('No fixtures found');
+                    logger.info('No fixtures found');
                 } else {
-                    console.log(fixtures);
+                    logger.info(fixtures);
                 }
             })
             .catch(function(error) {
-                console.error(error);
+                logger.error(error);
             })
             .then(function() {
                 connectionClose();
@@ -121,16 +123,16 @@ program
         promptly.confirm('This action will delete the local database, continue? (Y/n) ', function(err, value) {
             if(value) {
                 clean().then(function() {
-                        console.log('Removed all fixtures from the local database. Use `node bot.js setup` to import an up to date fixture list');
+                        logger.info('Removed all fixtures from the local database. Use `node bot.js setup` to import an up to date fixture list');
                     })
                     .catch(function(error) {
-                        console.error(error);
+                        logger.error(error);
                     })
                     .then(function() {
                         connectionClose();
                     });
             } else {
-                console.log('Clean aborted');
+                logger.info('Clean aborted');
             }
         });
     });
