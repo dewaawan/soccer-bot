@@ -9,8 +9,7 @@ services:
   - mongodb
 
 before_script:
-  - "npm install --dev"
-  - sleep 15
+  - "npm install --only=dev"
   - mongo mydb_test --eval 'db.addUser("travis", "test");'
 
 notifications:

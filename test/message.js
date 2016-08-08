@@ -15,10 +15,7 @@ describe('message', function() {
     });
 
     it('should return a formatted message given just one fixture', function() {
-        const input = [{
-            homeTeamName: 'AFC Bournemouth',
-            awayTeamName: 'Arsenal FC'
-        }];
+        const input = [{ homeTeamName: 'AFC Bournemouth', awayTeamName: 'Arsenal FC' }];
         const expected = 'Kicking off soon:\nBournemouth v Arsenal';
 
         assert.equal(message(input), expected);
@@ -26,20 +23,11 @@ describe('message', function() {
 
     it('should return a formatted message given multiple fixtures', function() {
         const input = [
-            {
-                homeTeamName: 'AFC Bournemouth',
-                awayTeamName: 'Arsenal FC'
-            },
-            {
-                homeTeamName: 'West Ham United FC',
-                awayTeamName: 'Chelsea FC',
-            },
-            {
-                homeTeamName: 'Crystal Palace FC',
-                awayTeamName: 'Norwich City FC',
-            }
+            { homeTeamName: 'AFC Bournemouth', awayTeamName: 'Arsenal FC' },
+            { homeTeamName: 'West Ham United FC', awayTeamName: 'Chelsea FC' },
+            { homeTeamName: 'Crystal Palace FC', awayTeamName: 'West Bromwich Albion FC' }
         ];
-        const expected = 'Kicking off soon:\nBournemouth v Arsenal,\nWest Ham United v Chelsea,\nCrystal Palace v Norwich City';
+        const expected = 'Kicking off soon:\nBournemouth v Arsenal,\nWest Ham United v Chelsea,\nCrystal Palace v West Bromwich Albion';
 
         assert.equal(message(input), expected);
     });
