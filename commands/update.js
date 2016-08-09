@@ -43,7 +43,7 @@ function update() {
                         // push the fixtures in as a Promise to be resolved later this query
                         // updates the date to the api date and sets `posted` to `false`
                         fixtures_to_update.push(
-                            Fixture.Fixture.update(
+                            Fixture.update(
                                 { _id: db_fixtures[index]._id },
                                 { $set: { date: api_fixtures_date.toISOString(), posted: false } }
                             ).exec()
