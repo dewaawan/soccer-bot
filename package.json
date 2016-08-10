@@ -8,7 +8,7 @@
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "engines": {
-    "node": ">=4.x"
+    "node": ">=6.0"
   },
   "license": "MIT",
   "dependencies": {
