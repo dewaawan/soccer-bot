@@ -36,3 +36,7 @@ To automatically update the fixture list every day and look for matches to be po
 Make sure dev packages are installed with `npm install --dev`. Run tests with `npm test`.
 
 To test the app with a specific date, simply set a date for `CUSTOM_DATE` in your `.env` equal to some unix timestamp. An example of this `CUSTOM_DATE` environment variable can be found in `.env.example`. To run with a specific date, use `node bot.js run --dev`.
+
+## License
+
+[MIT License](LICENSE.md)
