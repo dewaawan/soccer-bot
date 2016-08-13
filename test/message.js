@@ -25,9 +25,9 @@ describe('message', function() {
         const input = [
             { homeTeamName: 'AFC Bournemouth', awayTeamName: 'Arsenal FC' },
             { homeTeamName: 'West Ham United FC', awayTeamName: 'Chelsea FC' },
-            { homeTeamName: 'Crystal Palace FC', awayTeamName: 'West Bromwich Albion FC' }
+            { homeTeamName: 'Crystal Palace FC', awayTeamName: 'Sunderland AFC' }
         ];
-        const expected = 'Kicking off soon:\nBournemouth v Arsenal,\nWest Ham United v Chelsea,\nCrystal Palace v West Bromwich Albion';
+        const expected = 'Kicking off soon:\nBournemouth v Arsenal,\nWest Ham United v Chelsea,\nCrystal Palace v Sunderland';
 
         assert.equal(message(input), expected);
     });
