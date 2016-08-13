@@ -22,7 +22,15 @@ Made to work with [api.football-data.org](https://api.football-data.org/) for da
 - `node bot.js clean` removes everything in the local database
 - `node bot.js list -h [name] -a [name]` finds and lists out those fixtures from the local database. Each option is optional. Given no options, every fixture will be listed
 
-## Cron Jobs
+## On Production
+
+Make sure `NODE_ENV="production"` in the `.env`.
+
+### Logging
+
+Logging on production logs to `logger.log`. In addition, all errors on production will be emailed. See `.env.example` for example setup with a smtp host (ex: [mailgun](http://www.mailgun.com/)) and copy these to `.env` for usage.
+
+### Cron Jobs
 
 To automatically update the fixture list every day and look for matches to be posted in groupme all the time, a cron job can be used. A sample cron job to update every night and check for matches every five minutes:
 
