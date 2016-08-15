@@ -1,6 +1,6 @@
 # Soccer Bot
 
-[![Build Status](https://travis-ci.org/noahbass/soccer-bot.svg?branch=master)](https://travis-ci.org/noahbass/soccer-bot) [![dependencies Status](https://david-dm.org/noahbass/soccer-bot/status.svg)](https://david-dm.org/noahbass/soccer-bot) [![devDependencies Status](https://david-dm.org/noahbass/soccer-bot/dev-status.svg)](https://david-dm.org/noahbass/soccer-bot?type=dev)
+[![MIT license](https://img.shields.io/github/license/noahbass/soccer-bot.svg)](http://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/noahbass/soccer-bot.svg?branch=master)](https://travis-ci.org/noahbass/soccer-bot) [![dependencies Status](https://david-dm.org/noahbass/soccer-bot/status.svg)](https://david-dm.org/noahbass/soccer-bot) [![devDependencies Status](https://david-dm.org/noahbass/soccer-bot/dev-status.svg)](https://david-dm.org/noahbass/soccer-bot?type=dev)
 
 A groupme bot for auto posting upcoming soccer matches in a groupme chat built in Node.js.
 
