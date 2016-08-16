@@ -10,7 +10,8 @@ Made to work with [api.football-data.org](https://api.football-data.org/) for da
 
 - Make sure all dependencies are installed with `npm install`
 - Create a `.env` in the root of the project and include variables from `.env.example`. A bot id can be generated from [the groupme dev site](https://dev.groupme.com/bots). A key for the football api can be found at [api.football-data.org](http://api.football-data.org/)
-- Start [mongodb](https://www.mongodb.com/download-center) and specify a `MONGODB_URI` key in `.env`  
+  - Using multiple competitions: include two or more urls to [api.football-data.org](http://api.football-data.org/) separated by commas (no spaces). Ex: `FOOTBALL_API_URL="https://api.football-data.org/v1/competitions/426/fixtures,https://api.football-data.org/v1/competitions/430/fixtures"`
+- Start [mongodb](https://www.mongodb.com/download-center) and specify a `MONGODB_URI` key in `.env`
 - Do a first time setup with `node bot.js setup`
 - Run the bot with `node bot.js run`
 
