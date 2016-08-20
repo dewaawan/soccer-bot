@@ -16,7 +16,7 @@ const fixtureSchema = new Schema({
     updatedAt: { type: Date, required: true, default: new Date() }
 });
 
-fixtureSchema.pre('save', function(next) {
+fixtureSchema.pre('save', next => {
     const currentDate = new Date();
     this.updatedAt = currentDate;
 
@@ -41,9 +41,9 @@ module.exports = Fixture;
  *
  * @return {Object} An array of fixtures
  */
-module.exports.getFixtures = function() {
-    return new Promise(function(resolve, reject) {
-        Fixture.find({}, function(error, fixtures) {
+module.exports.getFixtures = () => {
+    return new Promise((resolve, reject) => {
+        Fixture.find({}, (error, fixtures) => {
             if (error) {
                 reject(error);
             }

@@ -14,8 +14,8 @@ const posted  = require('../lib/posted');
  *
  * @return {Promise}
  */
-function update() {
-    return new Promise(function(resolve, reject) {
+const update = () => {
+    return new Promise((resolve, reject) => {
         // Arrays of returned fixtures
         let api_fixtures = [];
         let db_fixtures  = [];
@@ -24,14 +24,14 @@ function update() {
         let fixtures_to_update = [];
 
         // Get the most up to date fixture list (0) and the database fixture list (1)
-        Promise.all([fetch(), Fixture.getFixtures()]).then(function(fixtures) {
+        Promise.all([fetch(), Fixture.getFixtures()]).then(fixtures => {
                 // Sort the returned fixtures
                 api_fixtures = sort(fixtures[0]);
                 db_fixtures  = sort(fixtures[1]);
 
                 // check the dates on the sorted arrays, if there is a mismatch, then update the date
                 // in the database to that of the fixtures from the api
-                db_fixtures.forEach(function(entry, index) {
+                db_fixtures.forEach((entry, index) => {
                     // get the date for the api's fixture in unix form
                     const api_fixtures_date = moment(api_fixtures[index].date);
                     const db_fixtures_date  = moment(db_fixtures[index].date);
@@ -51,18 +51,16 @@ function update() {
                     }
                 });
             })
-            .then(function() {
+            .then(() => {
                 // Update the fixtures with the new dates if applicable
                 if (fixtures_to_update.length === 0) {
                     resolve(fixtures_to_update);
                 } else {
                     // resolve the Promises in the fixtures_to_update array, these promises
                     // will return an object similar to { ok: 1, nModified: 1, n: 1 } when modified
-                    Promise.all(fixtures_to_update).then(function(values) {
+                    Promise.all(fixtures_to_update).then(values => {
                         // make an array of statuses from the updated database documents
-                        const statuses = values.map(function(entry) {
-                            return entry.ok;
-                        });
+                        const statuses = values.map(entry => entry.ok);
 
                         // check if any of the statuses are not 1
                         if (!statuses.includes(0)) {
@@ -72,12 +70,12 @@ function update() {
                             reject('Error updating database');
                         }
                     })
-                    .catch(function(error) {
+                    .catch(error => {
                         reject(error);
                     });
                 }
             })
-            .catch(function(error) {
+            .catch(error => {
                 reject(error);
             });
     });

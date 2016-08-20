@@ -7,9 +7,9 @@ const Fixture = require('../models/fixture');
  *
  * @return {Promise}
  */
-function clean() {
-    return new Promise(function(resolve, reject) {
-        Fixture.remove({}, function(error) {
+const clean = () => {
+    return new Promise((resolve, reject) => {
+        Fixture.remove({}, error => {
             if (error) {
                 reject(error);
             }

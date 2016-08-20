@@ -10,10 +10,10 @@ const posted  = require('../lib/posted');
  *
  * @return {Promise}
  */
-function run() {
-    return new Promise(function(resolve, reject) {
+const run = () => {
+    return new Promise((resolve, reject) => {
         // get an array of fixtures happening soon
-        find().then(function(fixtures_send) {
+        find().then(fixtures_send => {
                 // send the message to groupme if there is at least one fixture to send
                 if (fixtures_send.length > 0) {
                     // build a message to send to the chat
@@ -21,7 +21,7 @@ function run() {
 
                     // send the message to be posted in groupme
                     // and update those fixtures in the database as `posted: true`
-                    Promise.all([post(message_to_send), posted(fixtures_send)]).then(function(values) {
+                    Promise.all([post(message_to_send), posted(fixtures_send)]).then(values => {
                             // get the http response, value[1] can be ignored
                             const response = values[0];
 
@@ -33,7 +33,7 @@ function run() {
                                 response: response
                             });
                         })
-                        .catch(function(error) {
+                        .catch(error => {
                             reject(error);
                         });
                 } else {
@@ -45,7 +45,7 @@ function run() {
                     });
                 }
             })
-            .catch(function(error) {
+            .catch(error => {
                 reject(error);
             });
     });

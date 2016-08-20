@@ -9,18 +9,18 @@ const fetch      = require('../lib/fetch');
  *
  * @return {Promise}
  */
-function setup() {
-    return new Promise(function(resolve, reject) {
-        fetch().then(function(data) {
-                importToDB(data).then(function(data) {
+const setup = () => {
+    return new Promise((resolve, reject) => {
+        fetch().then(data => {
+                importToDB(data).then(data => {
                         // return imported documents
                         resolve(data);
                     })
-                    .catch(function(error) {
+                    .catch(error => {
                         reject(error);
                     });
             })
-            .catch(function(error) {
+            .catch(error => {
                 reject(error);
             });
     });

@@ -6,8 +6,8 @@ var assert  = test.assert;
 
 const sort = require('../lib/sort.js');
 
-describe('sort', function() {
-    it('should return a sorted array of objects', function() {
+describe('sort', () => {
+    it('should return a sorted array of objects', () => {
         const input = {
             args: [
                 { homeTeamName: 'Manchester United FC', awayTeamName: 'Tottenham Hotspur FC' },
@@ -26,7 +26,7 @@ describe('sort', function() {
         assert.deepEqual(sort(input.args), input.expected);
     });
 
-    it('should return a sorted array of objects given same fixtures on different matchdays', function() {
+    it('should return a sorted array of objects given same fixtures on different matchdays', () => {
         const input = {
             args: [
                 { homeTeamName: 'New England Revolution', awayTeamName: 'Columbus Crew SC', matchday: 2 },
