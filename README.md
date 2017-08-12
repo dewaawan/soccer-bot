@@ -2,9 +2,9 @@
 
 [![MIT license](https://img.shields.io/github/license/noahbass/soccer-bot.svg)](http://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/noahbass/soccer-bot.svg?branch=master)](https://travis-ci.org/noahbass/soccer-bot) [![dependencies Status](https://david-dm.org/noahbass/soccer-bot/status.svg)](https://david-dm.org/noahbass/soccer-bot) [![devDependencies Status](https://david-dm.org/noahbass/soccer-bot/dev-status.svg)](https://david-dm.org/noahbass/soccer-bot?type=dev)
 
-A groupme bot for auto posting upcoming soccer matches in a groupme chat built in Node.js.
+> A GroupMe bot for auto posting upcoming soccer matches in a chat
 
-Made to work with [api.football-data.org](https://api.football-data.org/) for data on the english premier league, but can be expanded to other competitions covered by the api.
+Made to work with [api.football-data.org](https://api.football-data.org/) for data on the english premier league, but can be expanded to other competitions covered by the api. Works as a command line interface or serverless service.
 
 ## Quick Start
 
@@ -39,6 +39,19 @@ To automatically update the fixture list every day and look for matches to be po
 0 0 * * * node bot.js update >/dev/null 2>&1
 */5 * * * * node bot.js run >/dev/null 2>&1
 ```
+
+## Serverless Service
+
+`handler.js` is ready for serverless functionality with soccer-bot. Install serverless with `npm install -g serverless`. Use `serverless deploy --aws-profile [PROFILE]` to deploy (where `[PROFILE]` is your aws profile). See the [serverless cheat sheet](https://serverless.com/framework/docs/providers/aws/guide/workflow#deploy-all) for quick, useful commands.
+
+Example commands:
+
+- Deploy: `serverless deploy --aws-profile [PROFILE]`
+- Deploy individual function: `serverless deploy function -f [FUNCTION NAME] -s [STAGE NAME] -r [REGION NAME] --aws-profile [PROFILE]`
+- Clean fixtures: `serverless invoke -f clean -s [STAGE] -r [REGION] -l --aws-profile [PROFILE]`
+- Setup fixtures: `serverless invoke -f setup -s [STAGE] -r [REGION] -l --aws-profile [PROFILE]`
+
+Like the cli, the serverless service requires a MongoDB connection string in the `MONGODB_URI` environment variable.
 
 ## Tests
 
