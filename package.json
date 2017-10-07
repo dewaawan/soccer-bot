@@ -22,8 +22,8 @@
     "winston-mail": "^1.2.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.1.2",
-    "mockdate": "^2.0.0"
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "mockdate": "^2.0.2"
   }
 }
