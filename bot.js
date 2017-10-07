@@ -18,7 +18,7 @@ const setup  = require('./commands/setup');
 
 // Set mongoose to use built-in js Promise and connect to mongodb
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true });
 
 const connectionClose = () => {
     mongoose.disconnect();
