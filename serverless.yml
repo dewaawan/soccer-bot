@@ -12,6 +12,7 @@
 # Happy Coding!
 
 service: soccer-bot
+frameworkVersion: ">=1.0.0 <2.0.0"
 
 provider:
   name: aws
@@ -23,17 +24,17 @@ provider:
 functions:
   clean:
     handler: handler.clean
-    name: ${self:provider.stage}-clean
+    name: ${self:service}-${self:provider.stage}-clean
   setup:
     handler: handler.setup
-    name: ${self:provider.stage}-setup
+    name: ${self:service}-${self:provider.stage}-setup
   run:
     handler: handler.run
-    name: ${self:provider.stage}-run
+    name: ${self:service}-${self:provider.stage}-run
     events:
-      - schedule: rate(15 minutes)
+      - schedule: rate(5 minutes)
   update:
     handler: handler.update
-    name: ${self:provider.stage}-update
+    name: ${self:service}-${self:provider.stage}-update
     events:
       - schedule: rate(1 day)

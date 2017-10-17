@@ -9,7 +9,11 @@ const update = require('./commands/update');
 const setup = require('./commands/setup');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI);
+
+const connectionOpen = () => {
+    mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true });
+    logger.info('Connected to mongodb');
+};
 
 const connectionClose = () => {
     mongoose.disconnect();
@@ -20,6 +24,7 @@ const connectionClose = () => {
 // entry points for Lambda
 // ---
 module.exports.clean = (event, context, callback) => {
+    connectionOpen();
     // remove all fixtures
     clean().then(() => {
             const response = 'Removed all fixtures from the local database. Use `node bot.js setup` to import an up to date fixture list';
@@ -37,6 +42,7 @@ module.exports.clean = (event, context, callback) => {
 };
 
 module.exports.setup = (event, context, callback) => {
+    connectionOpen();
     // first time setup
     setup().then(fixtures => {
             const response = `Successfully imported ${fixtures.length} fixture(s)`;
@@ -53,6 +59,7 @@ module.exports.setup = (event, context, callback) => {
 };
 
 module.exports.run = (event, context, callback) => {
+    connectionOpen();
     // find and post the matches that are happening within the given timeframe (in minutes)
     run().then(values => {
             let response = null;
@@ -76,6 +83,7 @@ module.exports.run = (event, context, callback) => {
 };
 
 module.exports.update = (event, context, callback) => {
+    connectionOpen();
     // fetch the latest fixture list and update the local fixture list
     update().then(fixtures => {
             let response = null;
