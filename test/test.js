@@ -1,9 +1,9 @@
 'use strict';
 
-const chai = require('chai');
+const chai = require('chai')
 
-const options = {};
+const options = {}
 
-exports.options = options;
-exports.chai    = chai;
-exports.assert  = chai.assert;
+exports.options = options
+exports.chai    = chai
+exports.assert  = chai.assert

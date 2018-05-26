@@ -1,10 +1,8 @@
-'use strict';
+const test = require('./test')
+const options = test.options
+const assert = test.assert
 
-var test    = require('./test.js');
-var options = test.options;
-var assert  = test.assert;
-
-const sort = require('../lib/sort.js');
+const sort = require('../lib/sortFixtures')
 
 describe('sort', () => {
     it('should return a sorted array of objects', () => {
@@ -21,25 +19,25 @@ describe('sort', () => {
                 { homeTeamName: 'Everton FC', awayTeamName: 'Watford FC' },
                 { homeTeamName: 'Manchester United FC', awayTeamName: 'Tottenham Hotspur FC' },
             ]
-        };
+        }
 
-        assert.deepEqual(sort(input.args), input.expected);
-    });
+        assert.deepEqual(sort(input.args), input.expected)
+    })
 
     it('should return a sorted array of objects given same fixtures on different matchdays', () => {
         const input = {
             args: [
-                { homeTeamName: 'New England Revolution', awayTeamName: 'Columbus Crew SC', matchday: 2 },
-                { homeTeamName: 'New England Revolution', awayTeamName: 'Columbus Crew SC', matchday: 1 },
+                { homeTeamName: 'FC Cincinnati', awayTeamName: 'Columbus Crew SC', matchday: 2 },
+                { homeTeamName: 'FC Cincinnati', awayTeamName: 'Columbus Crew SC', matchday: 1 },
                 { homeTeamName: 'Columbus Crew SC', awayTeamName: 'Sporting Kansas City', matchday: 3 }
             ],
             expected: [
                 { homeTeamName: 'Columbus Crew SC', awayTeamName: 'Sporting Kansas City', matchday: 3 },
-                { homeTeamName: 'New England Revolution', awayTeamName: 'Columbus Crew SC', matchday: 1 },
-                { homeTeamName: 'New England Revolution', awayTeamName: 'Columbus Crew SC', matchday: 2 }
+                { homeTeamName: 'FC Cincinnati', awayTeamName: 'Columbus Crew SC', matchday: 1 },
+                { homeTeamName: 'FC Cincinnati', awayTeamName: 'Columbus Crew SC', matchday: 2 }
             ]
-        };
+        }
 
-        assert.deepEqual(sort(input.args), input.expected);
-    });
-});
+        assert.deepEqual(sort(input.args), input.expected)
+    })
+})
