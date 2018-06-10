@@ -2,7 +2,7 @@ const test = require('./test')
 const options = test.options
 const assert = test.assert
 
-const sort = require('../lib/sortFixtures')
+const sort = require('../src/lib/sortFixtures')
 
 describe('sort', () => {
     it('should return a sorted array of objects', () => {

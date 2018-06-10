@@ -5,9 +5,7 @@
  * @returns {String}
  */
 module.exports = (fixtures) => {
-    const fixtureCount = fixtures.length
-
-    if (fixtureCount === 0) {
+    if (fixtures.length === 0) {
         return ''
     }
 
@@ -21,6 +19,7 @@ module.exports = (fixtures) => {
 
     // reduce the fixtures to a string
     const result = fixturesSimplified.reduce((leftFixture, rightFixture) => `${leftFixture},\n${rightFixture}`)
+    const matchday = fixtures[0].matchday
 
-    return `Kicking off soon:\n${result}`
+    return matchday === undefined ? `Kicking off soon:\n${result}` : `Matchday ${matchday} kicking off soon:\n${result}`
 }

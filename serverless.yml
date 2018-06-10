@@ -14,27 +14,71 @@
 service: soccer-bot
 frameworkVersion: ">=1.0.0 <2.0.0"
 
+# plugins:
+#   - serverless-dynamodb-local
+#   - serverless-offline
+
+# custom:
+#   dynamodb:
+#     start:
+#       port: 8000
+#       inMemory: true
+
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs8.10
   stage: dev
   region: us-east-2
   memorySize: 128
+  environment:
+    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+
 
 functions:
   clean:
-    handler: handler.clean
+    handler: src/clean.clean
     name: ${self:service}-${self:provider.stage}-clean
-  setup:
-    handler: handler.setup
-    name: ${self:service}-${self:provider.stage}-setup
   run:
-    handler: handler.run
+    handler: src/run.run
     name: ${self:service}-${self:provider.stage}-run
     events:
       - schedule: rate(5 minutes)
   update:
-    handler: handler.update
+    handler: src/update.update
     name: ${self:service}-${self:provider.stage}-update
     events:
-      - schedule: rate(1 day)
+      - schedule: rate(5 hours)
+  list:
+    handler: src/list.list
+    name: ${self:service}-${self:provider.stage}-list
+    events:
+      - http:
+        path: list
+        method: get
+
+
+resources:
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

@@ -1,14 +1,7 @@
 language: node_js
 
 node_js:
-  - "6"
-
-services:
-  - mongodb
-
-before_script:
-  - "npm install --only=dev"
-  - mongo mydb_test --eval 'db.createUser({ user:"travis", pwd:"test", roles:["readWrite"] });'
+  - "8"
 
 notifications:
   email: false

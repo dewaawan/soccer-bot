@@ -2,7 +2,7 @@ const test    = require('./test')
 const options = test.options
 const assert  = test.assert
 
-const message = require('../lib/messageBuilder')
+const message = require('../src/lib/messageBuilder')
 
 describe('message', () => {
     it('should return a formatted message given no fixtures', () => {
