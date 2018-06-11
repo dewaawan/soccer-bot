@@ -21,5 +21,5 @@ module.exports = (fixtures) => {
     const result = fixturesSimplified.reduce((leftFixture, rightFixture) => `${leftFixture},\n${rightFixture}`)
     const matchday = fixtures[0].matchday
 
-    return matchday === undefined ? `Kicking off soon:\n${result}` : `Matchday ${matchday} kicking off soon:\n${result}`
+    return matchday === undefined ? `Kicking off soon:\n${result}` : `kicking off soon (matchday ${matchday}):\n${result}`
 }
