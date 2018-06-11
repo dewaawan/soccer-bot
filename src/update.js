@@ -20,6 +20,7 @@ module.exports.update = async (event, context, callback) => {
 
         // update any fixtures whos date don't match, insert any fixtures that are missing
         const fixturesToPut = apiFixtures.map(apiFixture => {
+                // TODO: optimize this
                 const dbFixture = dbFixtures.find(dbFixture => Fixture.equal(apiFixture, dbFixture))
 
                 if (dbFixture) {
@@ -36,7 +37,7 @@ module.exports.update = async (event, context, callback) => {
                     return Object.assign({}, dbFixture, { date: apiFixtureDate.toDate() })
                 }
 
-                // need to insert fixture
+                // fixture does not exist in database, need to insert fixture
                 return apiFixture
             })
             // remove `null` items
@@ -44,6 +45,8 @@ module.exports.update = async (event, context, callback) => {
 
         // put fixtures
         await Fixture.updateFixtures(fixturesToPut)
+
+        console.info(`Found ${apiFixtures.length} fixtures. Put ${fixturesToPut.length} fixtures.`)
 
         return callback(null, `Found ${apiFixtures.length} fixtures. Put ${fixturesToPut.length} fixtures.`)
     } catch (error) {

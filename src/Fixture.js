@@ -1,10 +1,9 @@
 require('dotenv').config()
 
 const dynamoose = require('dynamoose')
-const moment = require('moment')
 
 const Schema = dynamoose.Schema
-const tableName = 'soccer-bot-world-cup' // process.env.DYNAMODB_TABLE
+const tableName = process.env.DYNAMODB_TABLE
 
 const schema = new Schema(
     {

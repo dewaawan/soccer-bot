@@ -8,6 +8,8 @@ module.exports.clean = async (event, context, callback) => {
         // remove fixtures
         await Fixture.removeFixtures(fixtures)
 
+        console.info(`Removed ${fixtures.length} fixtures`)
+
         return callback(null, `Removed ${fixtures.length} fixtures`)
     } catch (error) {
         console.error(error)

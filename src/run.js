@@ -4,7 +4,7 @@ const messageBuilder = require('./lib/messageBuilder')
 const post = require('./lib/post')
 
 module.exports.run = async (event, context, callback) => {
-    const timeframe = process.env.TIMEFRAME
+    const timeframe = Number(process.env.TIMEFRAME)
     const now = moment()
 
     try {
@@ -26,6 +26,7 @@ module.exports.run = async (event, context, callback) => {
         })
 
         if (fixturesToPost.length === 0) {
+            console.info('No fixtures posted')
             return callback(null, 'No fixtures posted')
         }
 
@@ -36,6 +37,8 @@ module.exports.run = async (event, context, callback) => {
         // mark each fixture in fixturesToPost as `posted=true`, update in the database
         const postedFixtures = fixturesToPost.map(fixture => Object.assign({}, fixture, { posted: true }))
         await Fixture.updateFixtures(postedFixtures)
+
+        console.info(message)
 
         return callback(null, message)
     } catch (error) {
