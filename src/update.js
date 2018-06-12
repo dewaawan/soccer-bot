@@ -2,7 +2,6 @@ require('dotenv').config()
 
 const moment = require('moment')
 const fetchApiFixtures = require('./lib/data-api/fetchFixtures')
-const fetchDbFixtures = require('./lib/db-api/fetchFixtures')
 const sortFixtures = require('./lib/sortFixtures')
 const Fixture = require('./Fixture')
 
@@ -16,10 +15,11 @@ module.exports.update = async (event, context, callback) => {
 
     try {
         const apiFixtures = await fetchApiFixtures(endpoint, competitionId, apiKey)
-        const dbFixtures = await fetchDbFixtures()
+        const dbFixtures = await Fixture.getFixtures(true) // include already posted fixtures (to avoid duplications)
 
         // update any fixtures whos date don't match, insert any fixtures that are missing
-        const fixturesToPut = apiFixtures.map(apiFixture => {
+        const fixturesToPut = apiFixtures
+            .map(apiFixture => {
                 // TODO: optimize this
                 const dbFixture = dbFixtures.find(dbFixture => Fixture.equal(apiFixture, dbFixture))
 
